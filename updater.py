@@ -4,7 +4,7 @@ import sys
 
 GITHUB_USER = "EdPortos"
 GITHUB_REPO = "teste_autoupdate"
-BRANCH = "main"
+BRANCH = "master"
 
 RAW_BASE = f"https://raw.githubusercontent.com/{GITHUB_USER}/{GITHUB_REPO}/{BRANCH}"
 
