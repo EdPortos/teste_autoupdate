@@ -4,7 +4,7 @@ import sys
 
 GITHUB_USER = "EdPortos"
 GITHUB_REPO = "teste_autoupdate"
-BRANCH = "master"
+BRANCH = "main"
 
 RAW_BASE = f"https://raw.githubusercontent.com/{GITHUB_USER}/{GITHUB_REPO}/{BRANCH}"
 
@@ -49,4 +49,10 @@ def check_and_update(current_version: str):
     print(f"[updater] Atualizado para v{remote_version}! Reiniciando...\n")
 
     # Reinicia o processo com os mesmos argumentos
-    os.execv(sys.executable, [sys.executable] + sys.argv)
+    # Usa subprocess no Windows para lidar com caminhos com espaços
+    if sys.platform == "win32":
+        import subprocess
+        subprocess.Popen([sys.executable] + sys.argv)
+        sys.exit(0)
+    else:
+        os.execv(sys.executable, [sys.executable] + sys.argv)
